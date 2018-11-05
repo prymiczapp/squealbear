@@ -70,7 +70,7 @@ html: function(isEvent, data) {
 <div style="padding-top: 8px;">
 	<div style="float: left; width: 45%;">
 		Comparison Type:<br>
-		<select id="comparison" class="round" onchange="glob.onChange1(this)">
+		<select id="comparison" class="round">
 			<option value="0">Exists</option>
 			<option value="1" selected>Equals</option>
 			<option value="2">Equals Exactly</option>
@@ -80,7 +80,7 @@ html: function(isEvent, data) {
 			<option value="6">Matches Regex</option>
 		</select>
 	</div>
-	<div style="float: right; width: 50%;" id="directValue">
+	<div style="float: right; width: 50%;">
 		Value to Compare to:<br>
 		<input id="value" class="round" type="text" name="is-eval">
 	</div>
@@ -101,15 +101,6 @@ html: function(isEvent, data) {
 init: function() {
 	const {glob, document} = this;
 
-	glob.onChange1 = function(event) {
-		if(event.value === "0") {
-			document.getElementById("directValue").style.display = 'none';
-		} else {
-			document.getElementById("directValue").style.display = null;
-		}
-	};
-
-	glob.refreshVariableList(document.getElementById('storage'));
 	glob.onChangeTrue(document.getElementById('iftrue'));
 	glob.onChangeFalse(document.getElementById('iffalse'));
 },

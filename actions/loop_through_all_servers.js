@@ -23,7 +23,7 @@ section: "Lists and Loops",
 //---------------------------------------------------------------------
 
 subtitle: function(data) {
-	return `Loop Servers through Event ID "${data.source}"`;
+	return `Loop Servers through Event #${data.source}`;
 },
 
 //---------------------------------------------------------------------
@@ -102,21 +102,14 @@ action: function(cache) {
 	const Files = this.getDBM().Files;
 	const bot = this.getDBM().Bot.bot;
 	
-	const id = data.source;
-	let actions;
-	const allData = Files.data.events;
-	for(let i = 0; i < allData.length; i++) {
-		if(allData[i]._id === id) {
-			actions = allData[i].actions;
-			break;
-		}
-	}
-	if(!actions) {
+	const id = parseInt(data.source);
+	if(!Files.data.events[id]) {
 		this.callNextAction(cache);
 		return;
 	}
-
+	const actions = Files.data.events[id].actions;
 	const servers = bot.guilds.array();
+
 	const act = actions[0];
 	if(act && this.exists(act.name)) {
 		const looper = function(i) {

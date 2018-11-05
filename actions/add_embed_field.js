@@ -94,9 +94,6 @@ html: function(isEvent, data) {
 //---------------------------------------------------------------------
 
 init: function() {
-	const {glob, document} = this;
-
-	glob.refreshVariableList(document.getElementById('storage'));
 },
 
 //---------------------------------------------------------------------
